@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% set titulo = 'Iniciar Sesión' %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        <div class="h1">
+        <span>BIENVENIDO!</span>
+        </div>
+        <img class="img-login" src="{{ url_for('static', filename='/imagenes/login_ico.png') }}" width="150px" height="150px">
+        {{ form.hidden_tag() }}
+        <p>
+
+
+            <div class="input-container">
+                <input type="text" required=""{{ form.username(size=32) }}/>
+                <label id="email">Correo electronico</label>
+            </div>2
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+
+        <div class="input-container">
+            <input type="password" required="" />
+            <label id="pass">Contraseña</label>
+            <span class="btn-show-pass">
+                <i class="zmdi zmdi-eye"></i>
+            </span>
+        </div>
+        <div class="text-center-login">
+            <span class="cuenta1">
+                ¿No tienes cuenta?
+            </span>
+
+            <a class="cuenta2" href="{{ url_for('register') }}">
+                Registrate
+            </a>
+        </div>
+
+        <p class="btn-login">{{ form.submit() }}</p>
+    </form>
+
+
+{% endblock %}

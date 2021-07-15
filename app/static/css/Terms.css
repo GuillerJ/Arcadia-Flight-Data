@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@600&display=swap');
+
+.terms-header {
+    padding: 10px;
+    background-color: aliceblue;
+    top: 0;
+    border-bottom: 1px solid black;
+}
+
+.terms-header-text {
+
+    color: black;
+    font-size: 27px;
+    font-family: 'Markazi Text', serif;
+}
+
+.icon_header {
+    font-size: 110%;
+    text-align: right;
+    color: black;
+    right: 5%;
+    position: fixed;
+    margin-top: 12px;
+}
+
+.titulo{
+    margin: 2% 3% 2% 3%;
+    font-size: 18px;
+    color: darkblue;
+    text-decoration: underline;
+    text-align: justify;
+}
+
+.parrafo{
+    margin: 2% 5% 2% 5%;
+    font-size: 17px;
+    color: black;
+    text-align: justify;
+}
+
+.titulo-foro{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: justify;
+    margin: 2%;
+}
+
+.parrafo-foro{
+    font-size: 17px;
+    text-align: justify;
+    margin: 2%;
+}
