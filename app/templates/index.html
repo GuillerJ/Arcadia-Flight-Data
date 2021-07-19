@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.usuario }}!</h1>
-    <form>
-      <input class="chosen-value" type="text" value="" placeholder="Type to filter">
-        <ul class="value-list">
-          {% for nombre in airports %}
-            <li id="{{ airports.get(nombre) }}">{{ nombre }}</li>
-          {% endfor %}
-        </ul>
-      </form>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter.css') }}"/>
+  <div class="header">
+      <div class="header_text">
+        Hi, {{ current_user.usuario }}! Welcome to OpenSky Analisis App
+      </div>
+  </div>
 
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter.css') }}"/>
-      <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter.js') }}"></script>
+  <form>
+    <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+      <ul class="value-list">
+        {% for nombre in airports %}
+          <li id="{{ airports.get(nombre) }}">{{ nombre }}</li>
+        {% endfor %}
+      </ul>
+    </form>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter.js') }}"></script>
 {% endblock %}
