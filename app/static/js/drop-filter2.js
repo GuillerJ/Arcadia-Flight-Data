@@ -1,3 +1,7 @@
+var date = -1;
+var icao = -1;
+
+
 function dropSelect() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -18,15 +22,24 @@ function filterFunction() {
   }
 }
 
+function changeDate() {
+  date = document.getElementById("dateInic").value;
+
+  load_arrivals(icao, date);
+}
+
 var elements = document.getElementsByClassName("input-airport");
 
 var getAirport = function() {
-    var icao = this.id;
+    icao = this.id;
     var nombre = this.innerText;
     document.getElementById("myButton").textContent = nombre;
     document.getElementById("myDropdown").classList.toggle("show");
-
+    
+    load_arrivals(icao, date);
 };
+
+
 
 for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', getAirport, false);
@@ -34,7 +47,9 @@ for (var i = 0; i < elements.length; i++) {
 
 
 $( function() {
-    $( "#dateinic" ).datepicker({
-        dateFormat: 'dd MM yy',
-    });
-  } );
+  $( "#dateInic" ).datepicker({
+      dateFormat: 'dd MM yy',
+  });
+} );
+
+

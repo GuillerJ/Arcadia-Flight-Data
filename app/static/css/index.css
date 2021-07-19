@@ -15,7 +15,7 @@ h2 {
     color: white;
     padding: 5px 15px;
     text-decoration: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     transition: .3s ease-in-out;
 } 
 .log-link:hover {
@@ -42,7 +42,7 @@ h2 {
 .datepicker{
     background-color: #8c9fde;
     color: white;
-    padding: 7px 15px;
+    padding: 10px 15px;
     font-size: 16px;
     border: none;
     cursor: pointer;

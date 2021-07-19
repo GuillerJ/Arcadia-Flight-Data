@@ -4,9 +4,12 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter2.css') }}"/>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+ 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
   
   <h2>Welcome to OpenSky Analisis App</h2>
   <a class="log-link" href="{{ url_for('logout') }}">
@@ -35,10 +38,36 @@
       </div>
     </div>
 
-    <input class="datepicker" type="text" id="dateinic" placeholder="Choose duration">
+    <input class="datepicker" type="text" id="dateInic" onchange="changeDate()" placeholder="Choose duration">
   </div>
 
-    
-    <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter2.js') }}"></script>
+  
+  <table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+  </table>
+
+
+  <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter2.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='/js/table.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='/js/load.js') }}"></script>
     
 {% endblock %}
