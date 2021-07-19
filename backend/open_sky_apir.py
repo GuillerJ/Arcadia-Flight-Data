@@ -53,6 +53,8 @@ class get_arrivals(Resource):
             data_dict = {}
             i = 0
             for data in data_json:
+                data.update({'firstSeen': datetime.fromtimestamp(data.get('firstSeen')).strftime('%d-%m-%Y %H:%M:%S')})
+                data.update({'lastSeen': datetime.fromtimestamp(data.get('lastSeen')).strftime('%d-%m-%Y %H:%M:%S')})
                 data_dict[i] = data
                 i += 1
         except:
