@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+
+        {% if title %}
+        <title>{{ title }} - OpenSky Analisis</title>
+        {% else %}
+        <title>OpenSky Analisis - </title>
+        {% endif %}
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+    <body>
+
+        {% block content %}{% endblock %}
+    </body>
+</html>
