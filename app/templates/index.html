@@ -1,9 +1,16 @@
 {% extends "base.html" %}
-{% set titulo = 'Inicio' %}
 
 {% block content %}
     <h1>Hi, {{ current_user.usuario }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+    <form>
+      <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+        <ul class="value-list">
+          {% for nombre in airports %}
+            <li id="{{ airports.get(nombre) }}">{{ nombre }}</li>
+          {% endfor %}
+        </ul>
+      </form>
+
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter.css') }}"/>
+      <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter.js') }}"></script>
 {% endblock %}
