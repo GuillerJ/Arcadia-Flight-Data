@@ -58,7 +58,7 @@ class get_arrivals(Resource):
                 data_dict[i] = data
                 i += 1
         except:
-            data_dict = {"Error:": "Could not load open sky api."}
+            data_dict = {"Error": "Could not retrieve any data from open sky api. Api is busy."}
             print(r.text)
         
         return data_dict

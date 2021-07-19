@@ -25,7 +25,9 @@ function load_arrivals(icao, date) {
            date: date},
     success: function(response) {
       $("#dato_actual").html(response);
-      if (response != "None") {
+      if (typeof response.Error == "string") {
+        alert(response.Error);
+      } else if (response != "None") {
         var rows = [];  
         var si;
         //console.log(si)
