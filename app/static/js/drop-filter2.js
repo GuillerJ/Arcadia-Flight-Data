@@ -1,5 +1,5 @@
-var date = -1;
-var icao = -1;
+var date = "None";
+var icao = "None";
 
 
 function dropSelect() {

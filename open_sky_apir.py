@@ -40,22 +40,26 @@ class get_arrivals(Resource):
     @require_apikey
     def get(self, airport, date):
         if (airport == "None") or (date == "None"):
-            return -1
-
+            return "None"
+        
         end = datetime.now()
         end_unix = int(time.mktime(end.timetuple()))
         begin = datetime.strptime(date, '%d %B %Y')
         begin_unix = int(time.mktime(begin.timetuple()))
-
         params = {'airport': airport, 'begin': begin_unix, 'end': end_unix} 
         r = requests.get(open_sky_api.format(flights_arr), params=params)
-        print (params)
-        print(open_sky_api.format(flights_arr))
+        try:
+            data_json = r.json()
+            data_dict = {}
+            i = 0
+            for data in data_json:
+                data_dict[i] = data
+                i += 1
+        except:
+            data_dict = {"Error:": "Could not load open sky api."}
+            print(r.text)
         
-        data_json = r.json()
-
-        
-        return (airports)
+        return data_dict
 
 
 api.add_resource(HelloWorld, '/')
