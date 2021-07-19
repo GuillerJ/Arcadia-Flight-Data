@@ -1,0 +1,56 @@
+h2 {
+    color: black;
+    text-transform: uppercase;
+    font-size: 30px;
+    padding-top: 5%;
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: 100;
+}
+
+.log-link {
+    float: right;
+    margin-right: 5%;
+    background-color: #8c9fde ;
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .3s ease-in-out;
+} 
+.log-link:hover {
+    background-color: #4e6fdb;
+}
+.log-link:active {
+    background-color: black;
+}
+.log-link:visited {
+    background-color: #ccc;
+}
+
+#selection{
+    margin: 10% 5% 5%;
+}
+
+
+#myDropdown{
+    height: 500%;
+    overflow: auto;
+    transition: .3s ease-in-out;
+} 
+
+.datepicker{
+    background-color: #8c9fde;
+    color: white;
+    padding: 7px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.datepicker:hover, .datepicker:focus {
+    background-color: #4e6fdb;
+}
+.datepicker::placeholder{
+    color: white;
+} 

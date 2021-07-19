@@ -2,13 +2,18 @@
 
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter.css') }}"/>
-  <div class="header">
-      <div class="header_text">
-        Hi, {{ current_user.usuario }}! Welcome to OpenSky Analisis App
-      </div>
-  </div>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/drop-filter2.css') }}"/>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <h2>Welcome to OpenSky Analisis App</h2>
+  <a class="log-link" href="{{ url_for('logout') }}">
+      Log Out {{ current_user.usuario }}
+  </a>
 
+<!--
   <form>
     <input class="chosen-value" type="text" value="" placeholder="Type to filter">
       <ul class="value-list">
@@ -17,5 +22,23 @@
         {% endfor %}
       </ul>
     </form>
-    <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter.js') }}"></script>
+-->
+  <div id="selection">
+    <hr>
+    <div class="dropdown">
+      <button onclick="dropSelect()" class="dropbtn" id="myButton">Choose Airport</button>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        {% for nombre in airports %}
+          <a class="input-airport" id="{{ airports.get(nombre) }}">{{ nombre }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <input class="datepicker" type="text" id="dateinic" placeholder="Choose duration">
+  </div>
+
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/drop-filter2.js') }}"></script>
+    
 {% endblock %}
