@@ -1,0 +1,12 @@
+version: '3.8'
+services: 
+    api-service:
+        build: .
+        volumes: 
+            - .:/app/
+        ports: 
+            - 80:80
+            - 5005:5005
+        environment: 
+            PORT: 80
+            FLASK_DEBUG: 1

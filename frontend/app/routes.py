@@ -3,10 +3,13 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
+import requests
 
 from app import app, db
 from app.modelos import Usuario
 from app.formularios import LoginForm, RegistrationForm, EditProfileForm
+api_url = 'http://localhost:5005/{}'
+api_key = 'gjv_apiKey'
 
 
 
@@ -14,18 +17,8 @@ from app.formularios import LoginForm, RegistrationForm, EditProfileForm
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template("index.html", title='Home Page', user=current_user, posts=posts)
+    airports = requests.get(api_url.format('exAir'), headers={"api-key":api_key}).json()
+    return render_template("index.html", title='Home Page', user=current_user, airports=airports)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -64,7 +57,13 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/load/airports')
+def a_airports():
+    airport = request.args.get('airport')
+    date = request.args.get('date')
+    arrivals = requests.get(api_url.format('arrivals/{}/{}'.format(airport, date)), headers={"api-key":api_key}).json()
 
+    return arrivals
 
 @app.before_request
 def before_request():

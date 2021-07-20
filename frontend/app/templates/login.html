@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post" novalidate>
+    <h1><span>WELCOME!</span></h1>
+    <img class="img-login" src="{{ url_for('static', filename='imagenes/login_ico.png') }}" width="150px" height="150px">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registro.css') }}">
+    
+    {{ form.hidden_tag() }}
+    <div class="input-container">
+        {% for error in form.username.errors %}
+        <span class="errorLog" style="margin-left: 165px;">*</span>
+        {% endfor %}
+        {{ form.username(size=32) }}
+        <label id="email">Username</label>
+    </div>
+
+    <div class="input-container">
+        {% for error in form.password.errors %}
+        <span class="errorLog" style="margin-left: 105px;">*</span>
+        {% endfor %}
+        {{ form.password(size=32) }}
+        <label id="pass">Password</label>
+        <span class="btn-show-pass">
+            <i class="zmdi zmdi-eye"></i>
+        </span>
+    </div>
+
+    <div class="text-center-login">
+        <span class="cuenta1">
+            Don't you have an account?
+        </span>
+
+        <a class="cuenta2" href="{{ url_for('register') }}">
+            Sing Up
+        </a>
+    </div>
+
+    <p>{{ form.submit( class="btn-login" ) }}</p>
+</form>
+
+
+
+{% endblock %}
