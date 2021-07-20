@@ -3,10 +3,11 @@ from flask_restful import Resource, Api
 from functools import wraps
 from datetime import datetime
 from airports_example import airports
-import requests, time
+import requests, time, os
 
 app = Flask(__name__)
 api = Api(app)
+basedir = os.path.abspath(os.path.dirname(__file__))
 open_sky_api = 'https://opensky-network.org/api/{}'
 flights_arr = 'flights/arrival/'
 
@@ -14,14 +15,14 @@ def require_apikey(view_function):
     @wraps(view_function)
     # the new, post-decoration function. Note *args and **kwargs here.
     def decorated_function(*args, **kwargs):
-        with open('api.key', 'r') as apikey:
+        with open(os.path.join(basedir, 'api.key'), 'r') as apikey:
             key=apikey.read().replace('\n', '')
         if request.headers.get('api-key') and request.headers.get('api-key') == key:
             return view_function(*args, **kwargs)
         else:
             return abort(401)
     return decorated_function
-    
+
 
 class HelloWorld(Resource):
     @require_apikey
@@ -41,12 +42,12 @@ class get_arrivals(Resource):
     def get(self, airport, date):
         if (airport == "None") or (date == "None"):
             return "None"
-        
+
         end = datetime.now()
         end_unix = int(time.mktime(end.timetuple()))
         begin = datetime.strptime(date, '%d %B %Y')
         begin_unix = int(time.mktime(begin.timetuple()))
-        params = {'airport': airport, 'begin': begin_unix, 'end': end_unix} 
+        params = {'airport': airport, 'begin': begin_unix, 'end': end_unix}
         r = requests.get(open_sky_api.format(flights_arr), params=params)
         try:
             data_json = r.json()
@@ -60,7 +61,7 @@ class get_arrivals(Resource):
         except:
             data_dict = {"Error": "Could not retrieve any data from open sky api. Api is busy."}
             print(r.text)
-        
+
         return data_dict
 
 
