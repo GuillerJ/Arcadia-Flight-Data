@@ -28,7 +28,7 @@ function load_arrivals(icao, date) {
       if (typeof response.Error == "string") {
         alert(response.Error);
       } else if (response != "None") {
-        var rows = [];  
+        var rows = [];
         var si;
         //console.log(si)
         Object.entries(response).forEach(element => {
@@ -37,17 +37,17 @@ function load_arrivals(icao, date) {
         });
         //var columns = [];
         //for(var k in si) columns.push(k);
-        
-        $('.table').footable({
+        $('#table-arrivals').empty();
+        $('#table-arrivals').footable({
           "columns": columns,
           "rows":rows
         });
       }
-      $("#cargando").css("display", "none");      
+      $("#cargando").css("display", "none");
     },
     error: function(xhr) {
       alert("Error en la carga");
       $("#cargando").css("display", "none");
     }
   });
-} 
+}
